@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@source "../components";
+@source ".";
+
+@theme {
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+
+  /* Brand Colors */
+  --color-primary: #C5A059;
+  --color-navy-deep: #1a1a35;
+  --color-navy-dark: #15152b;
+  --color-urgent-red: #911a26;
+  --color-cta-orange: #E85D04;
+  --color-navy-card: #232342;
+  --color-navy-border: #313152;
+}
+
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 2, 6, 23;
+  --background-end-rgb: 15, 23, 42;
+}
+
+html, body {
+  color: rgb(var(--foreground-rgb));
+  background-color: #1a1a35;
+  background: #1a1a35;
+  min-height: 100vh;
+  overscroll-behavior-y: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0B1D3F; }
+::-webkit-scrollbar-thumb { background: #FCC602; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #e5b302; }
+
+/* Keep only the top-level CRM chat containers fixed.
+   Do not target nested Flowise nodes or the widget layout breaks. */
+crm-chat-widget,
+#crm-chat-widget-container,
+body > div[id^="flowise-"] {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  max-width: calc(100vw - 40px) !important;
+  max-height: min(100vh - 40px, 820px) !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 640px) {
+  crm-chat-widget,
+  #crm-chat-widget-container,
+  body > div[id^="flowise-"] {
+    bottom: 10px !important;
+    right: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+    max-height: calc(100dvh - 20px) !important;
+  }
+  /* Prevent body scroll when chat is open */
+  .crm-chat-open { overflow: hidden !important; }
+}
