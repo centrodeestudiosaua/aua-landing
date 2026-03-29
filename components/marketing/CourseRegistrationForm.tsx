@@ -24,29 +24,10 @@ export default function CourseRegistrationForm() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const eventId = crypto.randomUUID();
-
-        // Pixel client-side (deduplicación con CAPI)
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-            (window as any).fbq('track', 'Lead', { content_name: 'Registro Curso 2026' }, { eventID: eventId });
-        }
-
         const formData = new FormData();
         Object.entries(formState).forEach(([key, value]) => {
             formData.append(key, value);
         });
-        formData.append('eventId', eventId);
-
-        // Capture URL UTM and Meta Ads tracking parameters
-        if (typeof window !== 'undefined') {
-            formData.append('event_source_url', window.location.href);
-            const params = new URLSearchParams(window.location.search);
-            const trackingFields = ['lead_id', 'fbclid', 'ad_id', 'utm_id', 'adset_id', 'campaign_name', 'utm_campaign', 'page_id'];
-            trackingFields.forEach(field => {
-                const val = params.get(field);
-                if (val) formData.append(field, val);
-            });
-        }
 
         try {
             const result = await submitRegistration(null, formData);

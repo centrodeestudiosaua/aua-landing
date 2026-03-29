@@ -3,10 +3,25 @@ import Image from "next/image";
 import { Sparkles, ArrowRight, Search, Check, Scale, BookOpen, Users, Gavel, Laptop, Briefcase } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { fetchPublishedCourses } from "@/lib/crm-mcp";
 
-// Force dynamic rendering — CRM changes reflect instantly
-export const dynamic = 'force-dynamic';
+const featuredPrograms = [
+  {
+    id: "diplomado-en-amparo",
+    slug: "diplomado-en-amparo",
+    title: "Diplomado en Amparo",
+    description:
+      "Programa insignia de AUA con enfoque practico para abogadas y abogados que buscan dominar la tecnica del amparo en el ejercicio profesional contemporaneo.",
+    thumbnail_url: "/diplomadodeamparo.png",
+  },
+  {
+    id: "protocolo-stps-subcontratacion",
+    slug: "protocolo-stps-subcontratacion",
+    title: "Protocolo STPS en Subcontratacion",
+    description:
+      "Capacitacion ejecutiva orientada al cumplimiento laboral, auditoria preventiva y documentacion clave para atender revisiones de autoridad.",
+    thumbnail_url: "/diplomadoazul.jpeg",
+  },
+];
 
 
 export const metadata = {
@@ -34,10 +49,7 @@ export const metadata = {
   },
 };
 
-export default async function Home() {
-  const dbCourses = await fetchPublishedCourses();
-  const allCourses = [...dbCourses];
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-navy-deep font-display text-white selection:bg-primary selection:text-navy-deep">
       {/* Top Bar */}
@@ -254,7 +266,7 @@ export default async function Home() {
       <section id="programas" className="py-20 bg-navy-deep">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col gap-12">
-            {allCourses.map((course) => (
+            {featuredPrograms.map((course) => (
               <div key={course.id} className="group relative bg-navy-card/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-navy-border hover:border-primary/40 transition-all duration-500 shadow-2xl flex flex-col md:flex-row w-full min-h-[450px]">
                 {/* Visual Side */}
                 <div className="md:w-5/12 relative overflow-hidden h-72 md:h-auto">

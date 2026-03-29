@@ -19,18 +19,10 @@ export default function ContactForm() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const eventId = crypto.randomUUID();
-
-        // Pixel client-side (deduplicación con CAPI)
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-            (window as any).fbq('track', 'Lead', { content_name: 'Contacto General' }, { eventID: eventId });
-        }
-
         const formData = new FormData();
         Object.entries(formState).forEach(([key, value]) => {
             formData.append(key, value);
         });
-        formData.append('eventId', eventId);
 
         try {
             const result = await submitContact(null, formData);

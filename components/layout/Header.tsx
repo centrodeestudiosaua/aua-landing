@@ -3,41 +3,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu, X, LayoutDashboard } from "lucide-react";
-import { createClient } from "@/lib/supabase";
-import { User } from "@supabase/supabase-js";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
-    const supabase = createClient();
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
         window.addEventListener("scroll", handleScroll);
-
-        // Check auth status
-        const checkUser = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            setUser(session?.user ?? null);
-            setLoading(false);
-
-            const { data: { subscription } } = supabase.auth.onAuthStateChange(
-                (_event, session) => {
-                    setUser(session?.user ?? null);
-                }
-            );
-
-            return () => subscription.unsubscribe();
-        };
-
-        checkUser();
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [supabase.auth]);
+    }, []);
 
     return (
         <header className={`sticky top-0 z-50 transition-all duration-300 border-b ${scrolled ? "bg-navy-deep/95 backdrop-blur-md border-navy-border shadow-lg py-2" : "bg-navy-deep border-transparent py-4"}`}>
@@ -93,30 +71,20 @@ export default function Header() {
                 </nav>
 
                 {/* Desktop CTA */}
-                {!loading && (
-                    <div className="hidden md:flex items-center gap-4">
-                        {user ? (
-                            <Link 
-                                href="https://portal.centrodeestudiosaua.com/" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="inline-flex items-center gap-2 border border-primary/50 text-primary hover:bg-primary hover:text-navy-deep px-5 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(197,160,89,0.3)]"
-                            >
-                                <LayoutDashboard className="w-3.5 h-3.5" />
-                                Portal Alumno
-                            </Link>
-                        ) : (
-                            <>
-                                <Link href="https://portal.centrodeestudiosaua.com/login" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-slate-300 hover:text-white uppercase tracking-widest transition-colors">
-                                    Iniciar Sesión
-                                </Link>
-                                <Link href="https://portal.centrodeestudiosaua.com/inscribirse" target="_blank" rel="noopener noreferrer" className="inline-block border border-primary/50 text-primary hover:bg-primary hover:text-navy-deep px-5 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(197,160,89,0.3)]">
-                                    Regístrate
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                )}
+                <div className="hidden md:flex items-center gap-4">
+                    <Link
+                        href="/contacto"
+                        className="text-[10px] font-bold text-slate-300 hover:text-white uppercase tracking-widest transition-colors"
+                    >
+                        Solicitar Informacion
+                    </Link>
+                    <Link
+                        href="/#programas"
+                        className="inline-block border border-primary/50 text-primary hover:bg-primary hover:text-navy-deep px-5 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(197,160,89,0.3)]"
+                    >
+                        Ver Programas
+                    </Link>
+                </div>
 
                 {/* Mobile Menu Toggle */}
                 <button
@@ -146,31 +114,14 @@ export default function Header() {
 
                     <Link className="text-sm font-medium text-slate-200 uppercase tracking-wider" onClick={() => setMobileMenuOpen(false)} href="/contacto">Contacto</Link>
                     
-                    {!loading && (
-                        <div className="mt-4 flex flex-col gap-3">
-                            {user ? (
-                                <Link 
-                                    href="https://portal.centrodeestudiosaua.com/" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    onClick={() => setMobileMenuOpen(false)} 
-                                    className="bg-primary text-navy-deep px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-wide w-full text-center transition-all flex items-center justify-center gap-2"
-                                >
-                                    <LayoutDashboard className="w-4 h-4" />
-                                    Portal Alumno
-                                </Link>
-                            ) : (
-                                <>
-                                    <Link href="https://portal.centrodeestudiosaua.com/login" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="border border-primary/50 text-primary hover:bg-primary hover:text-navy-deep px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-wide w-full text-center transition-all">
-                                        Iniciar Sesión
-                                    </Link>
-                                    <Link href="https://portal.centrodeestudiosaua.com/inscribirse" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="bg-primary text-navy-deep px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-wide w-full text-center transition-all shadow-[0_0_15px_rgba(197,160,89,0.2)] hover:shadow-[0_0_20px_rgba(197,160,89,0.4)]">
-                                        Regístrate
-                                    </Link>
-                                </>
-                            )}
-                        </div>
-                    )}
+                    <div className="mt-4 flex flex-col gap-3">
+                        <Link href="/contacto" onClick={() => setMobileMenuOpen(false)} className="border border-primary/50 text-primary hover:bg-primary hover:text-navy-deep px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-wide w-full text-center transition-all">
+                            Solicitar Informacion
+                        </Link>
+                        <Link href="/#programas" onClick={() => setMobileMenuOpen(false)} className="bg-primary text-navy-deep px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-wide w-full text-center transition-all shadow-[0_0_15px_rgba(197,160,89,0.2)] hover:shadow-[0_0_20px_rgba(197,160,89,0.4)]">
+                            Ver Programas
+                        </Link>
+                    </div>
                 </div>
             )}
         </header>
