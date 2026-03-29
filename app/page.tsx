@@ -13,14 +13,6 @@ const featuredPrograms = [
       "Programa insignia de AUA con enfoque practico para abogadas y abogados que buscan dominar la tecnica del amparo en el ejercicio profesional contemporaneo.",
     thumbnail_url: "/diplomadodeamparo.png",
   },
-  {
-    id: "protocolo-stps-subcontratacion",
-    slug: "protocolo-stps-subcontratacion",
-    title: "Protocolo STPS en Subcontratacion",
-    description:
-      "Capacitacion ejecutiva orientada al cumplimiento laboral, auditoria preventiva y documentacion clave para atender revisiones de autoridad.",
-    thumbnail_url: "/diplomadoazul.jpeg",
-  },
 ];
 
 
@@ -189,7 +181,7 @@ export default function Home() {
               </div>
 
               <div className="pt-6">
-                <a className="bg-navy-deep border border-navy-border text-white text-sm font-bold uppercase tracking-wider px-8 py-3 rounded hover:bg-primary hover:text-navy-deep hover:border-primary transition-all shadow-lg inline-flex items-center gap-2 group" href="/cursos/protocolo-stps-subcontratacion">
+                <a className="bg-navy-deep border border-navy-border text-white text-sm font-bold uppercase tracking-wider px-8 py-3 rounded hover:bg-primary hover:text-navy-deep hover:border-primary transition-all shadow-lg inline-flex items-center gap-2 group" href="/cursos/diplomado-en-amparo">
                   Ver Oferta Académica <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>

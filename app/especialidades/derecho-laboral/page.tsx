@@ -194,7 +194,7 @@ export default function DerechoLaboralPage() {
                                 <p className="text-slate-300 text-base leading-relaxed mb-4 font-light">
                                     Acompaña a las empresas en el cumplimiento estricto de la normatividad. Prepárate para las inspecciones ordinarias y extraordinarias de la Secretaría del Trabajo y Previsión Social. Aprende a solventar observaciones, evitar la imposición de multas cuantiosas y entender el funcionamiento del REPSE (Registro de Prestadoras de Servicios Especializados). El incumplimiento en temas de subcontratación y normas oficiales (NOM-035, NOM-037) representa actualmente el riesgo número uno para las finanzas de las empresas en México.
                                 </p>
-                                <Link href="/cursos/protocolo-stps-subcontratacion" className="inline-flex items-center gap-2 text-primary font-bold hover:text-white transition-colors">
+                                <Link href="/contacto" className="inline-flex items-center gap-2 text-primary font-bold hover:text-white transition-colors">
                                     Descubre nuestro curso sobre Protocolo STPS <ArrowRight className="h-4 w-4" />
                                 </Link>
                             </div>

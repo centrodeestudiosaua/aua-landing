@@ -220,7 +220,7 @@ export default function ComplianceLaboralPage() {
                         El perfil profesional más buscado por corporativos, firmas legales y reclutadores en México tras las últimas reformas de la LFT.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="/cursos/protocolo-stps-subcontratacion" className="bg-navy-deep hover:bg-slate-800 text-white font-bold px-8 py-4 rounded transition-colors shadow-2xl flex items-center justify-center gap-2 group">
+                        <Link href="/contacto" className="bg-navy-deep hover:bg-slate-800 text-white font-bold px-8 py-4 rounded transition-colors shadow-2xl flex items-center justify-center gap-2 group">
                             Curso de Protocolo STPS <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
