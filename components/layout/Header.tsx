@@ -70,7 +70,21 @@ export default function Header() {
                     </Link>
                 </nav>
 
-                {/* Desktop CTA (Removed) */}
+                {/* Desktop CTA */}
+                <div className="hidden md:flex items-center gap-4">
+                    <Link
+                        href="/contacto"
+                        className="text-[10px] font-bold text-slate-300 hover:text-white uppercase tracking-widest transition-colors"
+                    >
+                        Solicitar Informacion
+                    </Link>
+                    <Link
+                        href="/#programas"
+                        className="inline-block border border-primary/50 text-primary hover:bg-primary hover:text-navy-deep px-5 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(197,160,89,0.3)]"
+                    >
+                        Ver Programas
+                    </Link>
+                </div>
 
                 {/* Mobile Menu Toggle */}
                 <button
@@ -99,6 +113,15 @@ export default function Header() {
                     <Link className="text-sm font-medium text-slate-200 uppercase tracking-wider" onClick={() => setMobileMenuOpen(false)} href="/#metodologia">Metodología</Link>
 
                     <Link className="text-sm font-medium text-slate-200 uppercase tracking-wider" onClick={() => setMobileMenuOpen(false)} href="/contacto">Contacto</Link>
+                    
+                    <div className="mt-4 flex flex-col gap-3">
+                        <Link href="/contacto" onClick={() => setMobileMenuOpen(false)} className="border border-primary/50 text-primary hover:bg-primary hover:text-navy-deep px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-wide w-full text-center transition-all">
+                            Solicitar Informacion
+                        </Link>
+                        <Link href="/#programas" onClick={() => setMobileMenuOpen(false)} className="bg-primary text-navy-deep px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-wide w-full text-center transition-all shadow-[0_0_15px_rgba(197,160,89,0.2)] hover:shadow-[0_0_20px_rgba(197,160,89,0.4)]">
+                            Ver Programas
+                        </Link>
+                    </div>
                 </div>
             )}
         </header>
